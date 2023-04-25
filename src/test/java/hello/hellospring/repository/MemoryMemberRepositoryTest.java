@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -12,13 +13,13 @@ import static org.assertj.core.api.Assertions.*;
 public class MemoryMemberRepositoryTest {
     MemberRepository repository = new MemoryMemberRepository();
 
-    @AfterEach
-    public void afterEach(){
-        repository.clearStore();
-    }
+//    @AfterEach
+//    public void afterEach(){
+//        repository.clearStore();
+//    }
 
     @Test
-    public void save(){
+    public void save() throws SQLException {
         Member member = new Member();
         member.setName("spring");
 
@@ -30,7 +31,7 @@ public class MemoryMemberRepositoryTest {
     }
 
     @Test
-    public void findByName(){
+    public void findByName() throws SQLException {
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
@@ -45,7 +46,7 @@ public class MemoryMemberRepositoryTest {
     }
 
     @Test
-    public void findAll(){
+    public void findAll() throws SQLException {
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
